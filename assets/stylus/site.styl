@@ -1,0 +1,56 @@
+@import 'nib'
+
+border-color = #333631
+link-color-hover = #bbb
+link-color =  #474b42
+bg-color = #fbfbfa
+
+fn-left()
+    float left
+fn-right()
+    float right
+
+*
+    margin 0
+    padding 0
+div
+    box-sizing  border-box
+html
+    font-size 62.5%
+body
+    font-size 1.4rem
+    a
+        color link-color
+        &:link
+        &:visited
+        &:active
+            color link-color
+        &:hover
+            opacity 0.6
+.header
+    border-top 2px solid border-color
+    border-bottom 1px solid #ccc
+    position relative
+
+    .inner-header
+        clearfix()
+        font-size 2.2rem
+        width 650px
+        margin 0 auto
+        padding 10px
+
+        .nav a
+            padding 10px 20px
+            text-decoration none
+
+.main-wrapper
+    background url(/images/bg.png)
+    height 1000px
+
+    .inner-wrapper
+        width 650px
+        height 1000px
+        margin 0 auto
+        background #fff
+        border-left 1px solid #ccc
+        border-right 1px solid #ccc
