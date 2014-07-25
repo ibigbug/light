@@ -21,7 +21,9 @@ var paths = {
     input: './assets/jade/**/*.jade',
     src: [
       './assets/jade/layout.jade',
-      './assets/jade/post.jade'
+      './assets/jade/post.jade',
+      './assets/jade/index.jade',
+      './assets/jade/single.jade'
     ],
     dest: './light/'
   }
