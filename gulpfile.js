@@ -74,12 +74,12 @@ gulp.task('server', function (next) {
 gulp.task('watch', ['server'], function () {
   var server = livereload();
   gulp.watch('./assets/jade/*.jade', ['template'])
-  gulp.watch(paths.stylus.input, ['css'])
+  gulp.watch(paths._stylus.input, ['css'])
   gulp.watch('./light/**/*.html')
     .on('change', function (file) {
       server.changed(file.path);
     })
-  gulp.watch(paths.stylus.dest + '/**')
+  gulp.watch(paths._stylus.dest + '/**')
     .on('change', function (file) {
       server.changed(file.path);
     })
