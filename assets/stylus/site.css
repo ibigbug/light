@@ -52,11 +52,9 @@ body a:hover {
 }
 .main-wrapper {
   background: url("/images/bg.png");
-  height: 1000px;
 }
 .main-wrapper .inner-wrapper {
   width: 650px;
-  height: 1000px;
   margin: 0 auto;
   background: #fff;
   border-left: 1px solid #ccc;
@@ -86,7 +84,8 @@ body a:hover {
 }
 .main-wrapper .inner-wrapper .main-area {
   margin-top: 40px;
-  padding: 0 20px;
+  padding: 20px;
+  padding-bottom: 1px;
 }
 .main-wrapper .inner-wrapper .main-area .block h4 {
   font-size: 13px;

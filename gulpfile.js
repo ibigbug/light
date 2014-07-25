@@ -19,12 +19,7 @@ var paths = {
   },
   jade: {
     input: './assets/jade/**/*.jade',
-    src: [
-      './assets/jade/layout.jade',
-      './assets/jade/post.jade',
-      './assets/jade/index.jade',
-      './assets/jade/single.jade'
-    ],
+    src: './assets/jade/**/*.jade',
     dest: './light/'
   }
 };
@@ -49,7 +44,9 @@ gulp.task('css', ['stylus'], function () {
 
 gulp.task('jade', function () {
   gulp.src(paths.jade.src)
-    .pipe(jade())
+    .pipe(jade({
+      pretty: true
+    }))
     .pipe(gulp.dest(paths.jade.dest))
 })
 
@@ -77,3 +74,4 @@ gulp.task('watch', ['server'], function () {
 })
 
 gulp.task('default', ['css', 'jade', 'watch']);
+gulp.task('build', ['css', 'jade']);
