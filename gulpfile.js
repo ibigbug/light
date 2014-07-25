@@ -9,45 +9,57 @@ var concat = require('gulp-concat');
 var livereload = require('gulp-livereload');
 
 var paths = {
-  stylus: {
-    src: './assets/stylus/**/*.styl',
-    dest: './assets/stylus/'
+  _stylus: {
+    input: './assets/stylus/**/*.styl',
+    dest: './light/css/'
   },
   css: {
-    src: './assets/**/*.css',
-    dest: './light/static'
+    input: './light/css',
+    dest: './light/css'
   },
-  jade: {
-    input: './assets/jade/**/*.jade',
-    src: './assets/jade/**/*.jade',
-    dest: './light/'
-  }
+  _includes: {
+    input: [
+      './assets/jade/head.jade',
+      './assets/jade/header.jade',
+      './assets/jade/footer.jade'
+    ],
+    dest: './light/_includes'
+  },
+  _layouts: {
+    input: [
+      './assets/jade/default.jade',
+      './assets/jade/page.jade',
+      './assets/jade/post.jade'
+    ],
+    dest: './light/_layouts/',
+  },
 };
 
 
-gulp.task('stylus', function () {
-  gulp.src(paths.stylus.src)
+gulp.task('_stylus', function () {
+  gulp.src(paths._stylus.input)
     .pipe(stylus({ use: [nib()]}))
-    .pipe(gulp.dest(paths.stylus.dest))
+    .pipe(gulp.dest(paths._stylus.dest))
 })
 
-gulp.task('css', ['stylus'], function () {
-  gulp.src(paths.css.src)
+gulp.task('css', ['_stylus'], function () {
+  gulp.src(paths.css.input)
     .pipe(base64({
       baseDir: 'assets',
       maxWeightResource: 1000000,
       verbose: true
     }))
-    .pipe(concat('site.css'))
+    .pipe(concat('light.css'))
     .pipe(gulp.dest(paths.css.dest))
 })
 
-gulp.task('jade', function () {
-  gulp.src(paths.jade.src)
-    .pipe(jade({
-      pretty: true
-    }))
-    .pipe(gulp.dest(paths.jade.dest))
+gulp.task('template', function () {
+  var folders = ['_includes', '_layouts'];
+  folders.forEach(function(folder){
+    gulp.src(paths[folder].input)
+      .pipe(jade())
+      .pipe(gulp.dest(paths[folder].dest))
+  });
 })
 
 gulp.task('server', function (next) {
@@ -61,9 +73,9 @@ gulp.task('server', function (next) {
 
 gulp.task('watch', ['server'], function () {
   var server = livereload();
-  gulp.watch(paths.jade.input, ['jade'])
-  gulp.watch(paths.stylus.src, ['css'])
-  gulp.watch(paths.jade.dest + '/**')
+  gulp.watch('./assets/jade/*.jade', ['template'])
+  gulp.watch(paths.stylus.input, ['css'])
+  gulp.watch('./light/**/*.html')
     .on('change', function (file) {
       server.changed(file.path);
     })
@@ -73,5 +85,5 @@ gulp.task('watch', ['server'], function () {
     })
 })
 
-gulp.task('default', ['css', 'jade', 'watch']);
-gulp.task('build', ['css', 'jade']);
+gulp.task('default', ['css', 'template']);
+gulp.task('dev', ['css', 'template', 'watch']);
