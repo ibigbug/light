@@ -1,6 +1,9 @@
 ---
-layout: default
+layout: page
+title: Home
+weight: 0
+permalink: /
 ---
-<div class="block lists"><h4>recently updates</h4><ul class="unstyled">
+<h4>recently updates</h4><ul class="unstyled">
 {% for post in site.posts limit: 5 %}<li><time>{{ post.date | date: "%Y-%m-%d" }}</time><span>&nbsp;—&nbsp; </span><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
-{% endfor %}</ul></div>
+{% endfor %}</ul>
