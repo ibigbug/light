@@ -5,13 +5,15 @@
 |permalink: /archives/
 |---
 ='\n'
-h4 Archives
-ul.unstyled
+ul.entry-list
     = '\n'
     | {% for post in site.posts %}
-    li
-        time {{ post.date | date: "%Y-%m-%d" }}
-        span &nbsp;—&nbsp; 
-        a(href="{{ post.url | prepend: site.baseurl }}") {{ post.title }}
+    li.entry-item
+        div.entry-meta
+            time {{ post.date | date: "%Y-%m-%d" }}
+        div.detail
+            h2
+                a(href="{{ post.url | prepend: site.baseurl }}") {{ post.title }}
+            a.description(href="{{ post.url | prepend: site.baseurl }}") {{ post.description }}
     = '\n'
     | {% endfor %}

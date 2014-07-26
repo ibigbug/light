@@ -5,6 +5,10 @@
 |permalink: /
 |---
 ='\n'
+|{% capture intro %}
+|{% include intro.md %}
+|{% endcapture %}
+|{{ intro | markdownify }}
 h4 recently updates
 ul.unstyled
     = '\n'
@@ -15,3 +19,7 @@ ul.unstyled
         a(href="{{ post.url | prepend: site.baseurl }}") {{ post.title }}
     = '\n'
     | {% endfor %}
+|{% capture outro %}
+|{% include outro.md %}
+|{% endcapture %}
+|{{ outro | markdownify }}

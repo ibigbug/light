@@ -8,3 +8,7 @@ div.post-entry
         time.updated {{ page.date | date: "%b %-d, %Y" }}
     div.entry-content
         | {{ content }}
+    |{% if site.comments %}
+    div.comment-area
+        |{% include ga.html %}
+    |{% endif %}

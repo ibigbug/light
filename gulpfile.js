@@ -21,7 +21,9 @@ var paths = {
     input: [
       './assets/jade/head.jade',
       './assets/jade/header.jade',
-      './assets/jade/footer.jade'
+      './assets/jade/footer.jade',
+      './assets/jade/comments.jade',
+      './assets/jade/ga.jade'
     ],
     dest: './light/_includes'
   },
@@ -33,8 +35,11 @@ var paths = {
     ],
     dest: './light/_layouts/',
   },
-  index: {
-    input: './assets/jade/index.jade',
+  _pages: {
+    input: [
+      './assets/jade/index.jade',
+      './assets/jade/archives.jade'
+    ],
     dest: './light/'
   }
 };
@@ -58,7 +63,7 @@ gulp.task('css', ['_stylus'], function () {
 })
 
 gulp.task('template', function () {
-  var targets = ['_includes', '_layouts', 'index'];
+  var targets = ['_includes', '_layouts', '_pages'];
   targets.forEach(function(t){
     gulp.src(paths[t].input)
       .pipe(jade({pretty: false}))

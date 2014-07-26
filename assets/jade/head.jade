@@ -1,6 +1,6 @@
 head
     block title
-        title {% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}
+        title {% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}
     link(rel="stylesheet", href="/css/site.css")
     meta(name="viewport" content="width=device-width")
     meta(name="description" content="{{ site.description }}")

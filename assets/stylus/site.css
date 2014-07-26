@@ -98,6 +98,11 @@ body a:hover {
   font-family: monospace;
   font-size: 14px;
 }
+.main-area ul.entry-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
 .entry-list .entry-item {
   margin: 25px 0 35px;
   line-height: 25px;
