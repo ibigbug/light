@@ -1,9 +1,15 @@
-extends ./layout.jade
-block content
-    div.block.lists
-        h4 recently updates
-        ul.unstyled
-            li
-                time 2000-00-00
-                 | — 
-                a(href="/") 测试标题
+|---
+|layout: default
+|---
+='\n'
+div.block.lists
+    h4 recently updates
+    ul.unstyled
+        = '\n'
+        | {% for post in site.posts limit: 5 %}
+        li
+            time {{ post.date | date: "%Y-%m-%d" }}
+            span &nbsp;—&nbsp; 
+            a(href="{{ post.url | prepend: site.baseurl }}") {{ post.title }}
+        = '\n'
+        | {% endfor %}

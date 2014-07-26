@@ -1,0 +1,18 @@
+doctype html
+html(lang="en")
+    include ./head.jade
+    body.yue
+        include ./header.jade
+        div.main-wrapper
+            div.inner-wrapper
+                div.logo
+                    a(href="/") {{ site.title }}
+                div.page-meta
+                    | {% if page.meta %}
+                    | {{ page.meta }}
+                    | {% else %}
+                    | {{ site.meta }}
+                    | {% endif %}
+                div.main-area
+                    | {{ content }}
+        include ./footer.jade

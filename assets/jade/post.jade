@@ -1,10 +1,10 @@
-extends ./layout.jade
-block content
-    ul.entry-list.unstyled
-        li.entry-item
-            div.entry-meta
-                time.updated May 28, 2014
-            div.detail
-                h2
-                    a(href="/") 测试标题
-                a.description(href="/") 天青色等烟雨 而我在等你
+|---
+|layout: default
+|---
+= '\n'
+div.post-entry
+    h1.entry-title {{ page.title }}
+    div.entry-meta
+        time.updated {{ page.date | date: "%b %-d, %Y" }}
+    div.entry-content
+        | {{ content }}

@@ -11,10 +11,10 @@ var livereload = require('gulp-livereload');
 var paths = {
   _stylus: {
     input: './assets/stylus/**/*.styl',
-    dest: './light/css/'
+    dest: './assets/stylus/'
   },
   css: {
-    input: './light/css',
+    input: './assets/stylus/*.css',
     dest: './light/css'
   },
   _includes: {
@@ -33,6 +33,10 @@ var paths = {
     ],
     dest: './light/_layouts/',
   },
+  index: {
+    input: './assets/jade/index.jade',
+    dest: './light/'
+  }
 };
 
 
@@ -49,16 +53,16 @@ gulp.task('css', ['_stylus'], function () {
       maxWeightResource: 1000000,
       verbose: true
     }))
-    .pipe(concat('light.css'))
+    .pipe(concat('site.css'))
     .pipe(gulp.dest(paths.css.dest))
 })
 
 gulp.task('template', function () {
-  var folders = ['_includes', '_layouts'];
-  folders.forEach(function(folder){
-    gulp.src(paths[folder].input)
-      .pipe(jade())
-      .pipe(gulp.dest(paths[folder].dest))
+  var targets = ['_includes', '_layouts', 'index'];
+  targets.forEach(function(t){
+    gulp.src(paths[t].input)
+      .pipe(jade({pretty: false}))
+      .pipe(gulp.dest(paths[t].dest))
   });
 })
 

@@ -1,0 +1,7 @@
+<!DOCTYPE html><html lang="en"><head><title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title><link rel="stylesheet" href="/css/site.css"><meta name="viewport" content="width=device-width"><meta name="description" content="{{ site.description }}"><link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}"></head><body class="yue"><div class="header"><div class="inner-header"><div class="nav">{% for page in site.pages %}
+{% if page.title %}<a class="page-link" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>{% endif %}
+{% endfor %}</div></div></div><div class="main-wrapper"><div class="inner-wrapper"><div class="logo"><a href="/">{{ site.title }}</a></div><div class="page-meta">{% if page.meta %}
+{{ page.meta }}
+{% else %}
+{{ site.meta }}
+{% endif %}</div><div class="main-area">{{ content }}</div></div></div><div class="footer"><div class="inner-footer"><p>&copy; Copyright 2014 by Yuwei Ba</p></div></div></body></html>
