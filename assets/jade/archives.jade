@@ -1,0 +1,17 @@
+|---
+|layout: page
+|title: Archives
+|weight: 1
+|permalink: /archives/
+|---
+='\n'
+h4 Archives
+ul.unstyled
+    = '\n'
+    | {% for post in site.posts %}
+    li
+        time {{ post.date | date: "%Y-%m-%d" }}
+        span &nbsp;—&nbsp; 
+        a(href="{{ post.url | prepend: site.baseurl }}") {{ post.title }}
+    = '\n'
+    | {% endfor %}
