@@ -29,12 +29,20 @@ body a:hover {
 .header {
   border-top: 2px solid #333631;
   border-bottom: 1px solid #ccc;
-  position: relative;
+  zoom: 1;
+}
+.header:before,
+.header:after {
+  content: "";
+  display: table;
+}
+.header:after {
+  clear: both;
 }
 .header .inner-header {
   zoom: 1;
   font-size: 2.2rem;
-  width: 650px;
+  max-width: 650px;
   margin: 0 auto;
   padding: 10px;
 }
@@ -50,11 +58,30 @@ body a:hover {
   padding: 10px 20px;
   text-decoration: none;
 }
+.header .inner-header-iphone {
+  display: none;
+  position: relative;
+}
+.header .inner-header-iphone .nav {
+  cursor: pointer;
+}
+.header .inner-header-iphone .nav .nav-list {
+  display: none;
+  position: absolute;
+  left: 0;
+  margin-left: -3px;
+  padding: 10px;
+  list-style-type: none;
+  background: #fff;
+}
+.header .inner-header-iphone .nav:hover .nav-list {
+  display: block;
+}
 .main-wrapper {
   background: url("/images/bg.png");
 }
 .main-wrapper .inner-wrapper {
-  width: 650px;
+  max-width: 650px;
   margin: 0 auto;
   background: #fff;
   border-left: 1px solid #ccc;
@@ -147,4 +174,12 @@ body a:hover {
   text-align: center;
   font-size: 14px;
   font-family: Optima, "Helvetica Neue", sans-serif;
+}
+@media (max-width: 640px) {
+  .header .inner-header {
+    display: none;
+  }
+  .header .inner-header-iphone {
+    display: block;
+  }
 }

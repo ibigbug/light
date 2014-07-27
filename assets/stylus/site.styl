@@ -5,11 +5,6 @@ link-color-hover = #bbb
 link-color =  #474b42
 bg-color = #fbfbfa
 
-fn-left()
-    float left
-fn-right()
-    float right
-
 *
     margin 0
     padding 0
@@ -30,24 +25,40 @@ body
 .header
     border-top 2px solid border-color
     border-bottom 1px solid #ccc
-    position relative
+    clearfix()
 
     .inner-header
         clearfix()
         font-size 2.2rem
-        width 650px
+        max-width 650px
         margin 0 auto
         padding 10px
 
         .nav a
             padding 10px 20px
             text-decoration none
+    .inner-header-iphone
+        display none
+        position relative
+        .nav
+            cursor pointer
+            .nav-list
+                display none
+                position absolute
+                left 0
+                margin-left -3px
+                padding 10px
+                list-style-type none
+                background #fff
+            &:hover .nav-list
+                display block
+
 
 .main-wrapper
     background url(/images/bg.png)
 
     .inner-wrapper
-        width 650px
+        max-width 650px
         margin 0 auto
         background #fff
         border-left 1px solid #ccc
@@ -132,3 +143,9 @@ body
         text-align center
         font-size 14px
         font-family Optima, "Helvetica Neue", sans-serif
+        
+@media (max-width: 640px)
+    .header .inner-header
+        display none
+    .header .inner-header-iphone
+        display block
