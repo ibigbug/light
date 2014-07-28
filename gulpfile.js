@@ -6,6 +6,7 @@ var jade = require('gulp-jade');
 var concat = require('gulp-concat');
 var base64 = require('gulp-css-base64');
 var rimraf = require('gulp-rimraf');
+var cssmin = require('gulp-cssmin');
 
 var livereload = require('gulp-livereload');
 
@@ -44,15 +45,14 @@ var paths = {
 
 gulp.task('css', function () {
   gulp.src(paths.css.input)
-    .pipe(stylus({
-      use: [nib()],
-    }))
+    .pipe(stylus({use: [nib()]}))
     .pipe(base64({
       verbose: true,
       baseDir: './assets',
       maxWeightResource: 100000000,
     }))
     .pipe(concat('site.css'))
+    .pipe(cssmin())
     .pipe(gulp.dest(paths.css.dest))
 })
 
