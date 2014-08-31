@@ -3,19 +3,17 @@ var gulp = require('gulp');
 var stylus = require('gulp-stylus');
 var nib = require('nib');
 var jade = require('gulp-jade');
-var base64 = require('gulp-css-base64');
 var concat = require('gulp-concat');
+var base64 = require('gulp-css-base64');
+var rimraf = require('gulp-rimraf');
+var cssmin = require('gulp-cssmin');
 
 var livereload = require('gulp-livereload');
 
 var paths = {
-  _stylus: {
-    input: './assets/stylus/**/*.styl',
-    dest: './assets/stylus/'
-  },
   css: {
-    input: './assets/stylus/*.css',
-    dest: './light/css'
+    input: './assets/stylus/**',
+    dest: './light/css/'
   },
   _includes: {
     input: [
@@ -45,20 +43,16 @@ var paths = {
 };
 
 
-gulp.task('_stylus', function () {
-  gulp.src(paths._stylus.input)
-    .pipe(stylus({ use: [nib()]}))
-    .pipe(gulp.dest(paths._stylus.dest))
-})
-
-gulp.task('css', ['_stylus'], function () {
+gulp.task('css', function () {
   gulp.src(paths.css.input)
+    .pipe(stylus({use: [nib()]}))
     .pipe(base64({
-      baseDir: 'assets',
-      maxWeightResource: 1000000,
-      verbose: true
+      verbose: true,
+      baseDir: './assets',
+      maxWeightResource: 100000000,
     }))
     .pipe(concat('site.css'))
+    .pipe(cssmin())
     .pipe(gulp.dest(paths.css.dest))
 })
 
@@ -92,6 +86,13 @@ gulp.task('watch', ['server'], function () {
     .on('change', function (file) {
       server.changed(file.path);
     })
+})
+
+gulp.task('clean', function () {
+  for (var target in paths) {
+    gulp.src(paths[target].dest, {read: false})
+      .pipe(rimraf());
+  }
 })
 
 gulp.task('default', ['css', 'template']);
