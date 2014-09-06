@@ -19,6 +19,7 @@ head
     meta(property="twitter:title" content="{% if page.title %}{{ page.title }} — {% endif %}{{ site.title }}")
     meta(property="twitter:description" content="{% if page.description %} {{ page.description }} {% else %} {{ site.description }} {% endif %}")
     meta(property="twitter:url" content="{{ site.url }}{{ page.url }}")
+    meta(property="twitter:domain" content="{{ site.title }}")
     | {% if page.image %}
     meta(property="twitter:image", content="{{ page.image }}")
     | {% endif %}
